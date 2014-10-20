@@ -5,7 +5,7 @@
  */
 var Module = require('meanio').Module;
 
-var ComscoreApi = new Module('comscore-api');
+var ComscoreApi = new Module('mean-comscore-api');
 var NodeCache = require('node-cache');
 
 /*

@@ -38,9 +38,9 @@ exports.getReport = function(options, callback) {
         comScoreResponse.on('end', function() {
             json = JSON.parse(json);
             if (typeof json.ERROR !== 'undefined') {
-                callback(json.ERROR, {});
+                callback(json.ERROR, null);
             } else {
-                callback({}, json);
+                callback(null, json);
             }
         });
     });
