@@ -1,0 +1,22 @@
+{
+    "name": "mean-comscore-api",
+    "version": "0.0.1",
+    "description": "Loads ComScore reports from the ComScore API",
+    "author": {
+        "name": "Jaakko Ojalehto"
+    },
+    "mean": "0.4.0",
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.4.x"
+    },
+    "dependencies": {
+        "qs": "^2.2.4",
+        "node-cache": "^1.0.2"
+    },
+    "devDependencies": {
+        "nock": "^0.48.1",
+        "chai": "^1.9.2"
+    },
+    "license": "MIT"
+}
