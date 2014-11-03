@@ -4,11 +4,12 @@ angular.module('mean.mean-comscore-api').factory('ComscoreApi', ['$http',
   function($http) {
     var forEachSorted = function(obj, iterator, context) {
       var keys = sortedKeys(obj);
-      for (var i = 0; i < keys.length; i+1) {
+      for (var i = 0; i < keys.length; i++) {
         iterator.call(context, obj[keys[i]], keys[i]);
       }
       return keys;
     };
+
     var sortedKeys = function(obj) {
       var keys = [];
       for (var key in obj) {
@@ -18,6 +19,7 @@ angular.module('mean.mean-comscore-api').factory('ComscoreApi', ['$http',
       }
       return keys.sort();
     };
+
     var buildUrl = function(url, params) {
       if (!params) return url;
       var parts = [];
@@ -30,6 +32,7 @@ angular.module('mean.mean-comscore-api').factory('ComscoreApi', ['$http',
       });
       return url + ((url.indexOf('?') === -1) ? '?' : '&') + parts.join('&');
     };
+
     var getReport = function(params, callback) {
       $http.get(buildUrl('/comscore/report', params)).success(function(data) {
         if (typeof callback === 'function') {
@@ -37,8 +40,18 @@ angular.module('mean.mean-comscore-api').factory('ComscoreApi', ['$http',
         }
       });
     };
+
+    var getReportData = function(params, callback) {
+      $http.get(buildUrl('/comscore/reportdata', params)).success(function(data) {
+        if (typeof callback === 'function') {
+          callback(data);
+        }
+      });
+    };
+
     return {
-      getReport: getReport
+      getReport: getReport,
+      getReportData: getReportData
     };
   }
 ]);
