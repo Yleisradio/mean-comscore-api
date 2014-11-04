@@ -56,7 +56,7 @@ var addTimestamp = function(row) {
     time += ':';
     time += row.minute || '00';
     time += ' Z';
-    var date = moment(time);
+    var date = moment(time, "DD-MM-YYYY HH:mm Z");
     if (date.isValid()) {
       row.time = date.toISOString();
     }
