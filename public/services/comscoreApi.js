@@ -33,16 +33,16 @@ angular.module('mean.mean-comscore-api').factory('ComscoreApi', ['$http',
       return url + ((url.indexOf('?') === -1) ? '?' : '&') + parts.join('&');
     };
 
-    var getReport = function(params, callback) {
-      $http.get(buildUrl('/comscore/report', params)).success(function(data) {
+    var getReport = function(params, callback, options) {
+      $http.get(buildUrl('/comscore/report', params), options).success(function(data) {
         if (typeof callback === 'function') {
           callback(data);
         }
       });
     };
 
-    var getReportData = function(params, callback) {
-      $http.get(buildUrl('/comscore/reportdata', params)).success(function(data) {
+    var getReportData = function(params, callback, options) {
+      $http.get(buildUrl('/comscore/reportdata', params), options).success(function(data) {
         if (typeof callback === 'function') {
           callback(data);
         }
@@ -55,3 +55,4 @@ angular.module('mean.mean-comscore-api').factory('ComscoreApi', ['$http',
     };
   }
 ]);
+
