@@ -1,14 +1,9 @@
 'use strict';
 
-var mean = require('meanio'),
-  config = mean.loadConfig(),
-  comscoreReport = require('./comscoreReport');
+var comscoreReport = require('./comscoreReport');
 
 var getOptions = function(req) {
   var options = {
-    client: config.comscore.client,
-    user: config.comscore.username,
-    password: config.comscore.password,
     site: req.query.site,
     itemid: req.query.itemid,
     startdate: req.query.startdate

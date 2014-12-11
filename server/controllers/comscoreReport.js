@@ -3,6 +3,8 @@
 var https = require('https'),
   qs = require('qs'),
   _ = require('lodash'),
+  mean = require('meanio'),
+  config = mean.loadConfig(),
   moment = require('moment');
 
 var stringifyComScoreReportParameters = function(parameters) {
@@ -25,6 +27,16 @@ var buildComscoreRequestUrl = function(options) {
     url += stringifyComScoreReportParameters(options.parameters);
     delete options.parameters;
   }
+  if(!options.client) {
+    options.client = config.comscore.client;
+  }
+  if(!options.user) {
+    options.user = config.comscore.username;
+  }
+  if(!options.password) {
+    options.password = config.comscore.password;
+  }
+
   url += qs.stringify(options);
   return url;
 };
@@ -80,24 +92,14 @@ var getComscoreDataFromReport = function(data) {
 };
 
 var getReportData = function(options, callback) {
-  var url = buildComscoreRequestUrl(options);
-
-  //Make request to ComScore API
-  var json = '';
-  https.get(url, function(comScoreResponse) {
-    comScoreResponse.on('data', function(chunk) {
-      json += chunk;
-    });
-    comScoreResponse.on('end', function() {
-      json = JSON.parse(json);
-      if (typeof json.ERROR !== 'undefined') {
-        callback(json.ERROR, null);
-      } else {
-        json = getComscoreDataFromReport(json);
-        callback(null, json);
-      }
-    });
-  });
+  getReport(options, function(err, data) {
+    if(err) {
+      callback(err, null);
+    } else {
+      var json = getComscoreDataFromReport(data);
+      callback(null, json);
+    }
+  })
 };
 
 module.exports = {
