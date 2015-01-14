@@ -27,7 +27,9 @@ describe('GET /comscore/report', function() {
       itemid: 11764,
       site: 'supersite',
       startdate: 20141001,
-      parameters: 'page:*'
+      parameters: {
+        page: '*'
+      }
     };
     mock.comscoreReport(params, 200, fixtures.report('valid'));
     comscoreReport.getReport(params, function(err, report) {
@@ -74,7 +76,9 @@ describe('GET /comscore/reportdata', function() {
       itemid: 11764,
       site: 'supersite',
       startdate: 20141001,
-      parameters: 'page:*'
+      parameters: {
+        page: '*'
+      }
     };
     var expectedData = [{
       'day': '01-10-2014',

@@ -32,5 +32,7 @@ The API can also be used programmatically
 		itemid: 12345,
 		site: 'supersite',
         startdate: 20141001,
-        parameters: 'parameterName:parameterValue'
+        parameters: {
+          parameterName: parameterValue
+        }
 	})

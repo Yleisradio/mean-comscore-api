@@ -9,12 +9,10 @@ var https = require('https'),
 
 var stringifyComScoreReportParameters = function(parameters) {
   var url = 'parameters=';
-  parameters = parameters.split('|');
   var encodedParameters = [];
-  for (var i in parameters) {
-    var parameter = parameters[i].split(':');
-    encodedParameters.push(encodeURIComponent(parameter[0]) + ':' + encodeURIComponent(parameter[1]));
-  }
+  _.forOwn(parameters, function(parameterValue, parameterName) {
+    encodedParameters.push(encodeURIComponent(parameterName) + ':' + encodeURIComponent(parameterValue));
+  });
   url += encodedParameters.join('|');
   url += '&';
   return url;
