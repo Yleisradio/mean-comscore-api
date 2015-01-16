@@ -22,7 +22,7 @@ var getOptions = function(req) {
     options.segmentid = req.query.segmentid;
   }
   if (req.query.parameters) {
-    parameters = req.query.parameters.split('|');
+    var parameters = req.query.parameters.split('|');
     options.parameters = {};
     for (var i in parameters) {
       var parameter = parameters[i].split(':');
