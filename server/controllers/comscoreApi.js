@@ -37,12 +37,12 @@ exports.getReport = function(req, res, ComscoreApi) {
   var cacheId = 'report-' + JSON.stringify(options);
   ComscoreApi.cache.get(cacheId, function(err, value) {
     if (!err && value && value[cacheId]) {
-      res.json(value[cacheId]);
+      res.jsonp(value[cacheId]);
     } else {
       comscoreReport.getReport(options, function(err, json) {
         if (err) {
           res.status(400);
-          res.json({
+          res.jsonp({
             error: err
           });
         } else {
@@ -62,12 +62,12 @@ exports.getReportData = function(req, res, ComscoreApi) {
   var cacheId = 'report-data-' + JSON.stringify(options);
   ComscoreApi.cache.get(cacheId, function(err, value) {
     if (!err && value && value[cacheId]) {
-      res.json(value[cacheId]);
+      res.jsonp(value[cacheId]);
     } else {
       comscoreReport.getReportData(options, function(err, json) {
         if (err) {
           res.status(400);
-          res.json({
+          res.jsonp({
             error: err
           });
         } else {
