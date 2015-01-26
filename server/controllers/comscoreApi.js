@@ -48,7 +48,7 @@ exports.getReport = function(req, res, ComscoreApi) {
         } else {
           ComscoreApi.cache.set(cacheId, json, 60 * 5, function(err, success) {
             if (!err && success) {
-              res.json(json);
+              res.jsonp(json);
             }
           });
         }
@@ -73,7 +73,7 @@ exports.getReportData = function(req, res, ComscoreApi) {
         } else {
           ComscoreApi.cache.set(cacheId, json, 60 * 5, function(err, success) {
             if (!err && success) {
-              res.json(json);
+              res.jsonp(json);
             }
           });
         }
