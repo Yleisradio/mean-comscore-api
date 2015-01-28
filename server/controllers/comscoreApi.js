@@ -26,7 +26,7 @@ var getOptions = function(req) {
     options.parameters = {};
     for (var i in parameters) {
       var parameter = parameters[i].split(':');
-      options.parameters[parameter[0]] = parameter[1];
+      options.parameters[parameter[0]] = decodeURIComponent(parameter[1]);
     }
   }
   return options;
