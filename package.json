@@ -1,6 +1,6 @@
 {
   "name": "mean-comscore-api",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Loads ComScore reports from the ComScore API",
   "author": {
     "name": "Jaakko Ojalehto"
